@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grace Youth Bible — Визитка</title>
+  <meta name="description" content="Одностраничный сайт-визитка Grace Youth Bible: о нас и контакты." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --fg: #e8f0fe;
+      --accent: #7cc3ff;
+    }
+
+    html, body { height: 100%; }
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--fg);
+      background: linear-gradient(180deg, #0b0c10 0%, #0f172a 100%);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 1rem;
+    }
+    .title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      flex-wrap: nowrap;
+      line-height: 1;
+    }
+    .title-part {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 8vw, 5rem);
+      letter-spacing: .5px;
+      white-space: nowrap;
+      text-wrap: balance;
+    }
+
+    /* Split fly-in animation */
+    .title-left, .title-right { opacity: 0; }
+    .animate .title-left, .animate .title-right { opacity: 1; }
+    .title-left.animate-in { animation: slideInLeft 900ms cubic-bezier(.2,.8,.2,1) forwards; }
+    .title-right.animate-in { animation: slideInRight 900ms cubic-bezier(.2,.8,.2,1) forwards; }
+    .title-wrap.animate-join { animation: joinPulse 700ms 900ms ease forwards; }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-120vw); filter: blur(6px); }
+      to   { transform: translateX(0);        filter: blur(0); }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(120vw); filter: blur(6px); }
+      to   { transform: translateX(0);      filter: blur(0); }
+    }
+
+    @keyframes joinPulse {
+      0%   { transform: scale(1); }
+      60%  { transform: scale(1.06); text-shadow: 0 6px 24px rgba(124,195,255,.45); }
+      100% { transform: scale(1); }
+    }
+
+    .subtitle {
+      margin-top: 1rem;
+      color: #cbd5e1;
+      font-size: .95rem;
+    }
+
+    .scroll-indicator {
+      position: absolute; bottom: 1.25rem; left: 0; right: 0; text-align: center; font-size: .85rem; color: #9aa3b2;
+    }
+
+    .btn-accent {
+      --bs-btn-color: #0b1220;
+      --bs-btn-bg: var(--accent);
+      --bs-btn-border-color: var(--accent);
+      --bs-btn-hover-bg: #9ad0ff;
+      --bs-btn-hover-border-color: #9ad0ff;
+      --bs-btn-focus-shadow-rgb: 124,195,255;
+      --bs-btn-active-bg: #6bb8ff;
+      --bs-btn-active-border-color: #6bb8ff;
+      box-shadow: 0 8px 24px rgba(124,195,255,.25);
+    }
+
+    /* Section styling */
+    section { scroll-margin-top: 72px; }
+    .section-title { font-weight:700; letter-spacing:.3px; }
+    .section-muted { color:#b6c2d1; }
+
+    .card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Footer */
+    footer { color:#9aa3b2; }
+
+    /* Accessibility: reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      .title-left.animate-in, .title-right.animate-in, .title-wrap.animate-join { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky Mobile Navbar -->
+  <nav class="navbar navbar-dark navbar-expand-md sticky-top" style="background: rgba(11,12,16,.6); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,.08);">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">GYB</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">О нас</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero text-center">
+    <div class="container">
+      <div class="title-wrap" id="titleWrap" aria-label="Grace Youth Bible">
+        <span class="title-part title-left" id="titleLeft">Grace Youth</span>
+        <span class="title-part title-right" id="titleRight" style="color: var(--accent);">Bible</span>
+      </div>
+      <p class="subtitle">Сообщество молодых людей, исследующих Писание вместе.</p>
+      <div class="mt-3">
+        <a href="#about" class="btn btn-sm btn-accent rounded-pill px-3">Узнать больше</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="bi bi-arrow-down" aria-hidden="true"></i>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5 py-md-6">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-12 col-lg-6">
+          <h2 class="section-title display-6 mb-3">О нас</h2>
+          <p class="section-muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor, justo a porttitor congue, purus diam dapibus eros, in blandit nulla tortor in libero. Curabitur dictum, sem sed euismod finibus, ligula nibh facilisis purus, vitae convallis quam sem in orci. Etiam sodales ligula id lorem posuere, a volutpat ipsum lacinia. Integer nec mi sit amet nunc facilisis rutrum. Phasellus eget semper velit. In at molestie nibh. Cras nec quam id velit interdum volutpat. Quisque nec lacus nunc. Pellentesque pulvinar sagittis luctus. Vivamus ac nibh ut lacus imperdiet posuere.
+          </p>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="row g-3">
+            <!-- 4 random responsive photos -->
+            <div class="col-6">
+              <div class="card overflow-hidden">
+                <img src="https://picsum.photos/seed/gyb1/600/400" class="card-img-top" alt="Random" loading="lazy">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card overflow-hidden">
+                <img src="https://picsum.photos/seed/gyb2/600/400" class="card-img-top" alt="Random" loading="lazy">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card overflow-hidden">
+                <img src="https://picsum.photos/seed/gyb3/600/400" class="card-img-top" alt="Random" loading="lazy">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card overflow-hidden">
+                <img src="https://picsum.photos/seed/gyb4/600/400" class="card-img-top" alt="Random" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts" class="py-5 py-md-6 border-top border-opacity-25" style="border-color: rgba(255,255,255,.1) !important;">
+    <div class="container text-center">
+      <h2 class="section-title display-6 mb-3">Контакты</h2>
+      <p class="section-muted mb-4">Мы в соцсетях. Следите за обновлениями и событиями.</p>
+      <div class="d-flex justify-content-center gap-3">
+        <!-- Instagram mock link -->
+        <a class="btn btn-outline-light rounded-pill px-3" href="https://instagram.com/your.handle" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="bi bi-instagram me-1" aria-hidden="true"></i> Instagram
+        </a>
+        <!-- Add more when ready
+        <a class="btn btn-outline-light rounded-pill px-3" href="#" aria-label="YouTube"><i class="bi bi-youtube me-1"></i> YouTube</a>
+        <a class="btn btn-outline-light rounded-pill px-3" href="#" aria-label="Telegram"><i class="bi bi-telegram me-1"></i> Telegram</a> -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4 text-center">
+    <div class="container small">© <span id="year"></span> Grace Youth Bible</div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <script>
+    // Animate title on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const left = document.getElementById('titleLeft');
+      const right = document.getElementById('titleRight');
+      const wrap = document.getElementById('titleWrap');
+      // Trigger CSS animations with small delay for smoothness
+      requestAnimationFrame(() => {
+        left.classList.add('animate-in');
+        right.classList.add('animate-in');
+        wrap.classList.add('animate-join');
+      });
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
