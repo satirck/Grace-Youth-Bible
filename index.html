@@ -1,236 +1,160 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grace Youth Bible — Визитка</title>
-  <meta name="description" content="Одностраничный сайт-визитка Grace Youth Bible: о нас и контакты." />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-
-  <style>
-    :root {
-      --bg: #0b0c10;
-      --fg: #e8f0fe;
-      --accent: #7cc3ff;
-    }
-
-    html, body { height: 100%; }
-    body {
-      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      color: var(--fg);
-      background: linear-gradient(180deg, #0b0c10 0%, #0f172a 100%);
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 3rem 1rem;
-    }
-    .title-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .5rem;
-      flex-wrap: nowrap;
-      line-height: 1;
-    }
-    .title-part {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: clamp(2rem, 8vw, 5rem);
-      letter-spacing: .5px;
-      white-space: nowrap;
-      text-wrap: balance;
-    }
-
-    /* Split fly-in animation */
-    .title-left, .title-right { opacity: 0; }
-    .animate .title-left, .animate .title-right { opacity: 1; }
-    .title-left.animate-in { animation: slideInLeft 900ms cubic-bezier(.2,.8,.2,1) forwards; }
-    .title-right.animate-in { animation: slideInRight 900ms cubic-bezier(.2,.8,.2,1) forwards; }
-    .title-wrap.animate-join { animation: joinPulse 700ms 900ms ease forwards; }
-
-    @keyframes slideInLeft {
-      from { transform: translateX(-120vw); filter: blur(6px); }
-      to   { transform: translateX(0);        filter: blur(0); }
-    }
-    @keyframes slideInRight {
-      from { transform: translateX(120vw); filter: blur(6px); }
-      to   { transform: translateX(0);      filter: blur(0); }
-    }
-
-    @keyframes joinPulse {
-      0%   { transform: scale(1); }
-      60%  { transform: scale(1.06); text-shadow: 0 6px 24px rgba(124,195,255,.45); }
-      100% { transform: scale(1); }
-    }
-
-    .subtitle {
-      margin-top: 1rem;
-      color: #cbd5e1;
-      font-size: .95rem;
-    }
-
-    .scroll-indicator {
-      position: absolute; bottom: 1.25rem; left: 0; right: 0; text-align: center; font-size: .85rem; color: #9aa3b2;
-    }
-
-    .btn-accent {
-      --bs-btn-color: #0b1220;
-      --bs-btn-bg: var(--accent);
-      --bs-btn-border-color: var(--accent);
-      --bs-btn-hover-bg: #9ad0ff;
-      --bs-btn-hover-border-color: #9ad0ff;
-      --bs-btn-focus-shadow-rgb: 124,195,255;
-      --bs-btn-active-bg: #6bb8ff;
-      --bs-btn-active-border-color: #6bb8ff;
-      box-shadow: 0 8px 24px rgba(124,195,255,.25);
-    }
-
-    /* Section styling */
-    section { scroll-margin-top: 72px; }
-    .section-title { font-weight:700; letter-spacing:.3px; }
-    .section-muted { color:#b6c2d1; }
-
-    .card {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      backdrop-filter: blur(6px);
-    }
-
-    /* Footer */
-    footer { color:#9aa3b2; }
-
-    /* Accessibility: reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      .title-left.animate-in, .title-right.animate-in, .title-wrap.animate-join { animation: none !important; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grace Youth Bible</title>
+    <meta name="description" content="Grace Youth Bible — молодежное служение. О нас, вакансии, галерея, контакты.">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Sticky Mobile Navbar -->
-  <nav class="navbar navbar-dark navbar-expand-md sticky-top" style="background: rgba(11,12,16,.6); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,.08);">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">GYB</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">О нас</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <header class="position-sticky top-0 z-3 shadow-sm bg-body" id="top">
+        <nav class="navbar navbar-expand-lg container">
+            <a class="navbar-brand fw-bold" href="#top">Grace Youth Bible</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGYB" aria-controls="navbarGYB" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarGYB">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#about">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vacancies">Вакансии</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Галерея</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-  <!-- HERO -->
-  <header class="hero text-center">
-    <div class="container">
-      <div class="title-wrap" id="titleWrap" aria-label="Grace Youth Bible">
-        <span class="title-part title-left" id="titleLeft">Grace Youth</span>
-        <span class="title-part title-right" id="titleRight" style="color: var(--accent);">Bible</span>
-      </div>
-      <p class="subtitle">Сообщество молодых людей, исследующих Писание вместе.</p>
-      <div class="mt-3">
-        <a href="#about" class="btn btn-sm btn-accent rounded-pill px-3">Узнать больше</a>
-      </div>
-    </div>
-    <div class="scroll-indicator">
-      <i class="bi bi-arrow-down" aria-hidden="true"></i>
-    </div>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about" class="py-5 py-md-6">
-    <div class="container">
-      <div class="row g-4 align-items-start">
-        <div class="col-12 col-lg-6">
-          <h2 class="section-title display-6 mb-3">О нас</h2>
-          <p class="section-muted">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor, justo a porttitor congue, purus diam dapibus eros, in blandit nulla tortor in libero. Curabitur dictum, sem sed euismod finibus, ligula nibh facilisis purus, vitae convallis quam sem in orci. Etiam sodales ligula id lorem posuere, a volutpat ipsum lacinia. Integer nec mi sit amet nunc facilisis rutrum. Phasellus eget semper velit. In at molestie nibh. Cras nec quam id velit interdum volutpat. Quisque nec lacus nunc. Pellentesque pulvinar sagittis luctus. Vivamus ac nibh ut lacus imperdiet posuere.
-          </p>
+    <section class="hero d-flex align-items-center text-center text-light">
+        <div class="container py-5">
+            <h1 class="display-5 fw-bold">Grace Youth Bible</h1>
+            <p class="lead opacity-75">Молодежное служение. Вера, Писание, единство.</p>
+            <a href="#about" class="btn btn-warning btn-lg mt-2">Узнать больше</a>
         </div>
-        <div class="col-12 col-lg-6">
-          <div class="row g-3">
-            <!-- 4 random responsive photos -->
-            <div class="col-6">
-              <div class="card overflow-hidden">
-                <img src="https://picsum.photos/seed/gyb1/600/400" class="card-img-top" alt="Random" loading="lazy">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card overflow-hidden">
-                <img src="https://picsum.photos/seed/gyb2/600/400" class="card-img-top" alt="Random" loading="lazy">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card overflow-hidden">
-                <img src="https://picsum.photos/seed/gyb3/600/400" class="card-img-top" alt="Random" loading="lazy">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card overflow-hidden">
-                <img src="https://picsum.photos/seed/gyb4/600/400" class="card-img-top" alt="Random" loading="lazy">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACTS -->
-  <section id="contacts" class="py-5 py-md-6 border-top border-opacity-25" style="border-color: rgba(255,255,255,.1) !important;">
-    <div class="container text-center">
-      <h2 class="section-title display-6 mb-3">Контакты</h2>
-      <p class="section-muted mb-4">Мы в соцсетях. Следите за обновлениями и событиями.</p>
-      <div class="d-flex justify-content-center gap-3">
-        <!-- Instagram mock link -->
-        <a class="btn btn-outline-light rounded-pill px-3" href="https://instagram.com/your.handle" target="_blank" rel="noopener" aria-label="Instagram">
-          <i class="bi bi-instagram me-1" aria-hidden="true"></i> Instagram
-        </a>
-        <!-- Add more when ready
-        <a class="btn btn-outline-light rounded-pill px-3" href="#" aria-label="YouTube"><i class="bi bi-youtube me-1"></i> YouTube</a>
-        <a class="btn btn-outline-light rounded-pill px-3" href="#" aria-label="Telegram"><i class="bi bi-telegram me-1"></i> Telegram</a> -->
-      </div>
-    </div>
-  </section>
+    <main>
+        <!-- About -->
+        <section id="about" class="py-5 border-bottom">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-12 col-md-6">
+                        <h2 class="section-title">О нас</h2>
+                        <p class="mb-3">Приглашаем именно тебя стать частью служения Grace Youth Bible!</p>
+                        <button class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#aboutMore" aria-expanded="false" aria-controls="aboutMore">Узнать больше</button>
+                    </div>
+                    <div class="col-12 col-md-6 order-first order-md-last">
+                        <img src="images/IMG_2755.jpg" class="img-fluid rounded shadow-sm object-fit-cover about-image" alt="Grace Youth Bible">
+                    </div>
+                </div>
+                <div class="collapse mt-4" id="aboutMore">
+                    <div class="card card-body lead">
+                        В нашей церкви стартует новое молодежное служение — Grace Youth Bible! Это уникальная возможность для духовного роста, укрепления веры и глубокого изучения Писания. На наших встречах тебя ждут интересные программы, вдохновляющие спикеры, глубокое изучение писания и многое другое, что поможет лучше познать Бога. Если ты хочешь использовать свои таланты и время для служения Господу и поддержать молодежь, присоединяйся к команде Grace Youth Bible! Вместе мы сможем сделать наше служение ярким и значимым. Ждем тебя!
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <footer class="py-4 text-center">
-    <div class="container small">© <span id="year"></span> Grace Youth Bible</div>
-  </footer>
+        <!-- Vacancies Slider -->
+        <section id="vacancies" class="py-5 bg-light border-bottom">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mb-3">
+                    <h2 class="section-title m-0">Вакансии</h2>
+                    <div class="text-muted small">Присоединяйся к команде!</div>
+                </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+                <div id="vacancyCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-camera-video me-2"></i>Медиа-специалисты</h5>
+                                    <p class="card-text">Если ты увлечён техникой, любишь работать с видео, фото и графикой — это твой шанс проявить себя! Ты будешь создавать яркий визуальный контент, помогать делать наши встречи запоминающимися и делиться вдохновением через соцсети.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-pencil-square me-2"></i>Текстовики</h5>
+                                    <p class="card-text">Если ты умеешь красиво и интересно писать — добро пожаловать! Анонсы, посты, сценарии и размышления, которые помогают молодежи лучше понять Слово Божие.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-book me-2"></i>Библия для религиозных</h5>
+                                    <p class="card-text">Любишь изучать Библию и делиться этим с другими? Веди встречи по углублённому изучению Писания, помогай молодым людям расти духовно, отвечай на вопросы и молись за них.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-brush me-2"></i>Декораторы</h5>
+                                    <p class="card-text">Украшай зал, придумывай тематические декорации и создавай особую атмосферу для встреч и праздников. Если есть талант к дизайну или рукоделию — это для тебя!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#vacancyCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#vacancyCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
-  <script>
-    // Animate title on load
-    window.addEventListener('DOMContentLoaded', () => {
-      const left = document.getElementById('titleLeft');
-      const right = document.getElementById('titleRight');
-      const wrap = document.getElementById('titleWrap');
-      // Trigger CSS animations with small delay for smoothness
-      requestAnimationFrame(() => {
-        left.classList.add('animate-in');
-        right.classList.add('animate-in');
-        wrap.classList.add('animate-join');
-      });
-      // Set current year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    });
-  </script>
+                <p class="mt-4 mb-0 text-center">Если ты хочешь служить, развиваться и делать что-то значимое — присоединяйся к нашей команде!</p>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="py-5 border-bottom">
+            <div class="container">
+                <h2 class="section-title mb-4">Галерея</h2>
+                <div id="galleryCarousel" class="carousel slide gallery-carousel" data-bs-ride="carousel">
+                    <div class="carousel-indicators" id="galleryIndicators"><!-- indicators via JS --></div>
+                    <div class="carousel-inner" id="galleryInner"><!-- slides via JS --></div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts -->
+        <section id="contacts" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title mb-4">Контакты</h2>
+                <div class="d-flex flex-column flex-md-row align-items-start gap-3">
+                    <a class="btn btn-outline-dark d-inline-flex align-items-center" href="https://t.me/Vlad_Podniuk" target="_blank" rel="noopener">
+                        <i class="bi bi-telegram me-2"></i> Telegram @Vlad_Podniuk
+                    </a>
+                    <a class="btn btn-outline-success d-inline-flex align-items-center" href="tel:+375297070984">
+                        <i class="bi bi-telephone me-2"></i> +375 29 707 09 84
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-4 text-center small text-muted">
+        <div class="container">© <span id="year"></span> Grace Youth Bible</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
