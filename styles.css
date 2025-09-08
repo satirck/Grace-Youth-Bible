@@ -30,6 +30,9 @@ a:hover, .nav-link:hover { color: #2d1c0e; }
 
 .about-image{
   height: 280px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .object-position-center{ object-position: center; }
@@ -58,25 +61,28 @@ a:hover, .nav-link:hover { color: #2d1c0e; }
   border-color: var(--gyb-accent);
 }
 
-/* Vacancies: lock heights to prevent jumping */
+/* Vacancies: fixed height, content-centered vertically */
 #vacancies .carousel .card{
   height: 100%;
 }
 #vacancies .carousel-item{
-  min-height: 280px;
+  height: 280px;
 }
 #vacancies .card-body{
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* equal space above/below content */
+  gap: .5rem;
 }
 #vacancies .card-title{ flex: 0 0 auto; }
-#vacancies .card-text{ flex: 1 1 auto; }
+#vacancies .card-text{ flex: 0 0 auto; }
 
 @media (min-width: 576px){
-  #vacancies .carousel-item{ min-height: 320px; }
+  #vacancies .carousel-item{ height: 320px; }
 }
 @media (min-width: 768px){
-  #vacancies .carousel-item{ min-height: 360px; }
+  #vacancies .carousel-item{ height: 360px; }
 }
 
 .gallery-carousel .carousel-inner{
@@ -99,3 +105,10 @@ a:hover, .nav-link:hover { color: #2d1c0e; }
   object-fit: cover;
 }
 
+/* Mobile header: add safe horizontal padding */
+@media (max-width: 575.98px){
+  header#top .navbar.container{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
