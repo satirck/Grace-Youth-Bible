@@ -11,6 +11,12 @@ body{
   background: var(--gyb-parchment);
 }
 
+a, .nav-link, .navbar-brand { color: var(--gyb-ink); }
+a:hover, .nav-link:hover { color: #2d1c0e; }
+.btn-outline-dark { border-color: var(--gyb-ink); color: var(--gyb-ink); }
+.btn-outline-dark:hover { background-color: var(--gyb-ink); color: #fff; }
+.navbar .nav-link.active { color: var(--gyb-accent); }
+
 .hero{
   min-height: 60vh;
   background-image: linear-gradient(var(--gyb-hero-overlay), var(--gyb-hero-overlay)), var(--hero-image, url("images/IMG_2758.jpg"));
@@ -25,6 +31,9 @@ body{
 .about-image{
   height: 280px;
 }
+
+.object-position-center{ object-position: center; }
+.object-fit-cover{ object-fit: cover; }
 
 @media (min-width: 768px){
   .hero{ min-height: 70vh; }
@@ -47,6 +56,27 @@ body{
 .btn-warning{
   background-color: var(--gyb-accent);
   border-color: var(--gyb-accent);
+}
+
+/* Vacancies: lock heights to prevent jumping */
+#vacancies .carousel .card{
+  height: 100%;
+}
+#vacancies .carousel-item{
+  min-height: 280px;
+}
+#vacancies .card-body{
+  display: flex;
+  flex-direction: column;
+}
+#vacancies .card-title{ flex: 0 0 auto; }
+#vacancies .card-text{ flex: 1 1 auto; }
+
+@media (min-width: 576px){
+  #vacancies .carousel-item{ min-height: 320px; }
+}
+@media (min-width: 768px){
+  #vacancies .carousel-item{ min-height: 360px; }
 }
 
 .gallery-carousel .carousel-inner{
