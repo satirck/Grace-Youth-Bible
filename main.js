@@ -1,76 +1,67 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const imageFiles = [
-  'IMG_2755.jpg',
-  'IMG_2756.jpg',
-  'IMG_2758.jpg',
-  'IMG_2759.jpg',
-  'IMG_2763.jpg'
+/* mobile menu */
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+burger.addEventListener('click', () => {
+  const open = menu.hasAttribute('data-open');
+  menu.toggleAttribute('data-open', !open);
+  burger.setAttribute('aria-expanded', String(!open));
+});
+menu.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    menu.removeAttribute('data-open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+});
+
+/* gallery */
+const photos = [
+  { src: 'images/IMG_2755.jpg', span: 'g-lg', alt: 'Общее фото молодёжи' },
+  { src: 'images/IMG_2756.jpg', span: 'g-sm', alt: 'Встреча служения' },
+  { src: 'images/IMG_2759.jpg', span: 'g-sm', alt: 'Изучение Писания' },
+  { src: 'images/IMG_2763.jpg', span: 'g-md', alt: 'Общение после встречи' },
+  { src: 'images/IMG_2758.jpg', span: 'g-md', alt: 'Молодёжное служение' }
 ];
 
-const galleryInner = document.getElementById('galleryInner');
-const galleryIndicators = document.getElementById('galleryIndicators');
-if (galleryInner && galleryIndicators) {
-  imageFiles.forEach((file, index) => {
-    const src = `images/${file}`;
-
-    const indicator = document.createElement('button');
-    indicator.type = 'button';
-    indicator.setAttribute('data-bs-target', '#galleryCarousel');
-    indicator.setAttribute('data-bs-slide-to', String(index));
-    indicator.setAttribute('aria-label', `Slide ${index+1}`);
-    if (index === 0) {
-      indicator.className = 'active';
-      indicator.setAttribute('aria-current', 'true');
-    }
-    galleryIndicators.appendChild(indicator);
-
-    const item = document.createElement('div');
-    item.className = 'carousel-item' + (index === 0 ? ' active' : '');
-
-    const link = document.createElement('a');
-    link.href = src;
-    link.setAttribute('data-bs-toggle', 'modal');
-    link.setAttribute('data-bs-target', '#lightboxModal');
-
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = 'GYB photo';
-    img.className = 'd-block w-100';
-
-    link.appendChild(img);
-    item.appendChild(link);
-    galleryInner.appendChild(item);
+const grid = document.getElementById('gallery-grid');
+photos.forEach((p, i) => {
+  const img = new Image();
+  img.src = p.src;
+  img.alt = p.alt;
+  img.className = 'washed ' + p.span;
+  img.loading = i > 1 ? 'lazy' : 'eager';
+  img.decoding = 'async';
+  img.tabIndex = 0;
+  img.addEventListener('click', () => openLightbox(p.src, p.alt));
+  img.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(p.src, p.alt); }
   });
+  grid.appendChild(img);
+});
+
+/* lightbox */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+let lastFocused = null;
+
+function openLightbox(src, alt) {
+  lastFocused = document.activeElement;
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || '';
+  lightbox.setAttribute('open', '');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lightbox-close').focus();
 }
 
-const modalHtml = `
-  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content bg-dark">
-        <div class="modal-body p-0">
-          <img class="modal-img" alt="Preview">
-        </div>
-        <div class="modal-footer justify-content-between bg-dark border-0">
-          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Закрыть</button>
-          <div class="text-light small">Grace Youth Bible</div>
-        </div>
-      </div>
-    </div>
-  </div>`;
-
-document.body.insertAdjacentHTML('beforeend', modalHtml);
-
-const lightboxModal = document.getElementById('lightboxModal');
-if (lightboxModal) {
-  const modalImg = lightboxModal.querySelector('img');
-  lightboxModal.addEventListener('show.bs.modal', (ev) => {
-    const trigger = ev.relatedTarget;
-    if (trigger && modalImg) {
-      const href = trigger.getAttribute('href');
-      modalImg.src = href;
-    }
-  });
+function closeLightbox() {
+  lightbox.removeAttribute('open');
+  lightboxImg.removeAttribute('src');
+  document.body.style.overflow = '';
+  if (lastFocused) lastFocused.focus();
 }
 
-document.documentElement.style.setProperty('--hero-image', 'url("images/IMG_2758.jpg")');
+lightbox.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.hasAttribute('open')) closeLightbox();
+});
